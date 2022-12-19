@@ -1,0 +1,15 @@
+**/classes/
+**/build/
+**/.settings/
+**/.apt_generated/
+**/bin/
+**/*.properties
+**/*.json
+**/target/
+**/.apt_generated_tests/
+**/.classpath
+**/.factorypath
+**/.project
+**/*.log
+**/log/
+**/*.txt
