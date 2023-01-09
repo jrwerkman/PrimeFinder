@@ -45,7 +45,12 @@ public class BruteIntegerMethod implements IMethod<Integer> {
 	public List<Integer> getResults() {
 		return results;
 	}
-
+	
+	@Override
+	public Integer getLastPrime() {
+		return results.get(results.size() - 1);
+	}
+	
 	@Override
 	public int count() {
 		return count;

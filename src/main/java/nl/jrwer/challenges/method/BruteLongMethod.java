@@ -42,6 +42,11 @@ public class BruteLongMethod implements IMethod<Long> {
 	}
 
 	@Override
+	public Long getLastPrime() {
+		return results.get(results.size() - 1);
+	}
+
+	@Override
 	public List<Long> getResults() {
 		return results;
 	}

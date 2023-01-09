@@ -7,4 +7,5 @@ public interface IMethod<T> {
 	List<T> getResults();
 	int count();
 	boolean foundAll();
+	T getLastPrime();
 }
