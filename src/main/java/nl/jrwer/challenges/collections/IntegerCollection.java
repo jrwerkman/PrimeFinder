@@ -23,4 +23,8 @@ public class IntegerCollection {
 		return lastIndex;
 	}
 	
+	public int last() {
+		return collection[lastIndex - 1];
+	}
+	
 }

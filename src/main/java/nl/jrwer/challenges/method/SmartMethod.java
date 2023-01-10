@@ -11,6 +11,9 @@ public class SmartMethod implements IMethod<Integer> {
 	private IntegerCollection primes = new IntegerCollection();
 	
 	private final ISettings settings;
+
+	private static final byte[] increments = new byte[] {2,2,2,2,2,4,2,2};
+	private byte index = -1;
 	
 	public SmartMethod(ISettings settings) {
 		this.settings = settings;
@@ -18,14 +21,28 @@ public class SmartMethod implements IMethod<Integer> {
 	
 	@Override
 	public void execute() {
-		for(int i=3; i<=settings.getMax(); i=i+2) {
+		for(int i=3; i<=settings.getMax(); i+=nextIncrement())
 			if(isPrime(i)) {
 				count++;
-				
 				primes.add(i);
 			}
-		}
 	}
+	
+	
+	/**
+	 * if last digit is 5 it never is a prime, except for 5 itself
+	 * So skip all digits ending in five
+	 * 
+	 * @return
+	 */
+	public byte nextIncrement() {
+		index++;
+
+		if(index == 8)
+			index = 4;
+		
+		return increments[index]; 
+	}	
 	
 	/**
 	 * Only divide number by the already found prime number.
@@ -45,9 +62,6 @@ public class SmartMethod implements IMethod<Integer> {
 			// uneven (except for 2), so 3 is the last value to check.
 			if(prime > third)
 				return true;
-			
-//			if(number - ((number / prime) * prime) == 0)
-//				return false;
 			
 			if(number % prime == 0)
 				return false;
@@ -82,7 +96,6 @@ public class SmartMethod implements IMethod<Integer> {
 
 	@Override
 	public boolean foundAll() {
-		return settings.getAmount() == count;
+		return settings.getAmount() == count();
 	}
-
 }
