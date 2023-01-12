@@ -13,7 +13,8 @@ public class PrimeFinderOneClass {
 	private static final IntegerCollection primes = new IntegerCollection();
 	
 	private static long time = 30_000L;
-	private static int count = 0;
+	// Starting at 1, because 2 is a prime number
+	private static int count = 1;
 	
 	private static byte index = -1;
 	private static final byte[] increments = new byte[] {2,2,2,2,2,4,2,2};
@@ -33,6 +34,9 @@ public class PrimeFinderOneClass {
 		
 		long startTime = System.currentTimeMillis();
 		
+		// 2 is a prime number
+		primes.add(2);
+
 		for(int i=3; System.currentTimeMillis() - startTime < time; i+=nextIncrement())
 			if(isPrime(i)) {
 				count++;
@@ -40,7 +44,7 @@ public class PrimeFinderOneClass {
 			}
 
 		System.out.println("Finished :)");
-		System.out.println(primes.getLastIndex());
+		System.out.println(String.format("Found %d primes", primes.getLastIndex()));
 		System.out.println(String.format("Last prime found: %s", df.format(primes.last())));
 		
 		// highest: 3,907,219
@@ -57,7 +61,7 @@ public class PrimeFinderOneClass {
 	private static boolean isPrime(int number) {
 		int third = number / 3;
 		
-		for(int i=0; i<count; i++) {
+		for(int i=1; i<count; i++) {
 			int prime = primes.get(i);
 
 			// A prime number can never be divided by 2 because it is always 
