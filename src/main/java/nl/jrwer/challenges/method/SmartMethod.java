@@ -21,6 +21,8 @@ public class SmartMethod implements IMethod<Integer> {
 	
 	@Override
 	public void execute() {
+		primes.add(2);
+		
 		for(int i=3; i<=settings.getMax(); i+=nextIncrement())
 			if(isPrime(i)) {
 				count++;
@@ -53,22 +55,20 @@ public class SmartMethod implements IMethod<Integer> {
 	 * @return
 	 */
 	private boolean isPrime(int number) {
-		int third = number / 3;
+		int third = (int) Math.sqrt(number);
+		int prime = 2;
 		
-		for(int i=0; i<primes.getLastIndex(); i++) {
-			int prime = primes.get(i);
-
-			// A prime number can never be divided by 2 because it is always 
-			// uneven (except for 2), so 3 is the last value to check.
-			if(prime > third)
-				return true;
+		// A prime number can never be divided by 2 because it is always 
+		// uneven (except for 2), so 3 is the last value to check.
+		for(int i=1; prime <= third; i++) {
+			prime = primes.get(i);
 			
 			if(number % prime == 0)
 				return false;
 		}
 
 		return true;
-	}
+	}	
 	
 	@Override
 	public List<Integer> getResults() {

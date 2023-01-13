@@ -14,7 +14,6 @@ public class PrimeFinderOneClass {
 	
 	private static long time = 30_000L;
 	// Starting at 1, because 2 is a prime number
-	private static int count = 1;
 	
 	private static byte index = -1;
 	private static final byte[] increments = new byte[] {2,2,2,2,2,4,2,2};
@@ -29,6 +28,10 @@ public class PrimeFinderOneClass {
 		return increments[index]; 
 	}
 	
+	/**
+	 * To check number: https://www.dcode.fr/prime-numbers-search
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		System.out.println("Searching for " + time / 1000 + " seconds ... \n");
 		
@@ -38,16 +41,14 @@ public class PrimeFinderOneClass {
 		primes.add(2);
 
 		for(int i=3; System.currentTimeMillis() - startTime < time; i+=nextIncrement())
-			if(isPrime(i)) {
-				count++;
+			if(isPrime(i))
 				primes.add(i);
-			}
 
 		System.out.println("Finished :)");
-		System.out.println(String.format("Found %d primes", primes.getLastIndex()));
+		System.out.println(String.format("Found %s primes", df.format(primes.getLastIndex())));
 		System.out.println(String.format("Last prime found: %s", df.format(primes.last())));
 		
-		// highest: 3,907,219
+		// highest: 133,194,097
 	}
 	
 	/**
@@ -59,15 +60,13 @@ public class PrimeFinderOneClass {
 	 * @return
 	 */
 	private static boolean isPrime(int number) {
-		int third = number / 3;
+		int third = (int) Math.sqrt(number);
+		int prime = 2;
 		
-		for(int i=1; i<count; i++) {
-			int prime = primes.get(i);
-
-			// A prime number can never be divided by 2 because it is always 
-			// uneven (except for 2), so 3 is the last value to check.
-			if(prime > third)
-				return true;
+		// A prime number can never be divided by 2 because it is always 
+		// uneven (except for 2), so 3 is the last value to check.
+		for(int i=1; prime <= third; i++) {
+			prime = primes.get(i);
 			
 			if(number % prime == 0)
 				return false;
