@@ -34,4 +34,7 @@ public class IntegerCollection {
 		return collection[lastIndex - 1];
 	}
 	
+	public void sort() {
+//		Arrays.sort(collection);
+	}
 }
