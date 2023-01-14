@@ -136,14 +136,14 @@ public class PrimeFinderOneClassThreads {
 		 * @return
 		 */
 		private boolean isPrime(long number) {
-			long third = number / 3;
+			long sqrt = number / 3;
 			
 			for(int i=1; i<PRIMES.size(); i++) {
 				long prime = PRIMES.get(i);
 
 				// A prime number can never be divided by 2 because it is always 
 				// uneven (except for 2), so 3 is the last value to check.
-				if(prime > third)
+				if(prime > sqrt)
 					return true;
 				
 				if(number % prime == 0)

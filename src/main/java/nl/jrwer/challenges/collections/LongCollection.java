@@ -2,16 +2,16 @@ package nl.jrwer.challenges.collections;
 
 import java.util.Arrays;
 
-public class IntegerCollection {
-	private int[] collection;
+public class LongCollection {
+	private long[] collection;
 	private int lastIndex = 0;
 	
-	public IntegerCollection() {
+	public LongCollection() {
 		this(1000000);
 	}
 	
-	public IntegerCollection(int initialArraySize) {
-		this.collection = new int[initialArraySize];
+	public LongCollection(int initialArraySize) {
+		this.collection = new long[initialArraySize];
 	}
 	
 	public void add(int value) {
@@ -22,7 +22,7 @@ public class IntegerCollection {
 			collection = Arrays.copyOf(collection, collection.length * 2);
 	}
 	
-	public int get(int index) {
+	public long get(int index) {
 		return collection[index];
 	}
 	
@@ -30,7 +30,7 @@ public class IntegerCollection {
 		return lastIndex;
 	}
 	
-	public int last() {
+	public long last() {
 		return collection[lastIndex - 1];
 	}
 	

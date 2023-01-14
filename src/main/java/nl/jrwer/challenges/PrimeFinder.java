@@ -42,7 +42,11 @@ public class PrimeFinder {
 		System.out.println("Finished :)");
 		System.out.println(String.format("Found: %s prime numbers", df.format(method.count())));
 		System.out.println("Found all: " + method.foundAll());
-		System.out.println("Time: " + (endTime - startTime) + " ms");
+		System.out.println("Time: " + (endTime - startTime) + " ms\n");
+	
+//		StringBuilder sb = new StringBuilder();
+//		method.getResults().stream().forEach(p -> sb.append(p).append('\n'));
+//		System.out.println(sb.toString());
 	}
 
 }
