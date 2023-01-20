@@ -46,10 +46,10 @@ public class PrimeFinderOneClass {
 
 		System.out.println(String.format("Time searching: %d ms", System.currentTimeMillis() - startTime));
 		System.out.println("Finished :)");
-		System.out.println(String.format("Found %s primes", df.format(primes.getLastIndex())));
+		System.out.println(String.format("Found %s primes", df.format(primes.size())));
 		System.out.println(String.format("Last prime found: %s", df.format(primes.last())));
 		
-		// highest: 133,194,097
+		// highest: 165,127,619
 	}
 	
 	/**
@@ -60,13 +60,12 @@ public class PrimeFinderOneClass {
 	 * @param number
 	 * @return
 	 */
-	private static boolean isPrime(int number) {
-		int third = (int) Math.sqrt(number);
+	public static boolean isPrime(int number) {
+		int sqrt = (int) Math.sqrt(number);
 		int prime = 2;
 		
-		// A prime number can never be divided by 2 because it is always 
-		// uneven (except for 2), so 3 is the last value to check.
-		for(int i=1; prime <= third; i++) {
+		// skip first prime (2), uneven can never be divided by 2
+		for(int i=1; prime <= sqrt; i++) {
 			prime = primes.get(i);
 			
 			if(number % prime == 0)

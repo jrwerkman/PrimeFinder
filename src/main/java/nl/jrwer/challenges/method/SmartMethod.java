@@ -7,7 +7,6 @@ import nl.jrwer.challenges.collections.IntegerCollection;
 import nl.jrwer.challenges.settings.ISettings;
 
 public class SmartMethod implements IMethod<Integer> {
-	private int count = 0;
 	private IntegerCollection primes = new IntegerCollection();
 	
 	private final ISettings settings;
@@ -24,10 +23,8 @@ public class SmartMethod implements IMethod<Integer> {
 		primes.add(2);
 		
 		for(int i=3; i<=settings.getMax(); i+=nextIncrement())
-			if(isPrime(i)) {
-				count++;
+			if(isPrime(i))
 				primes.add(i);
-			}
 	}
 	
 	
@@ -55,12 +52,10 @@ public class SmartMethod implements IMethod<Integer> {
 	 * @return
 	 */
 	private boolean isPrime(int number) {
-		int third = (int) Math.sqrt(number);
+		int sqrt = (int) Math.sqrt(number);
 		int prime = 2;
 		
-		// A prime number can never be divided by 2 because it is always 
-		// uneven (except for 2), so 3 is the last value to check.
-		for(int i=1; prime <= third; i++) {
+		for(int i=1; prime <= sqrt; i++) {
 			prime = primes.get(i);
 			
 			if(number % prime == 0)
@@ -73,9 +68,8 @@ public class SmartMethod implements IMethod<Integer> {
 	@Override
 	public List<Integer> getResults() {
 		List<Integer> primesList = new ArrayList<>();
-		primesList.add(2);
 		
-		for(int i=0; i<count; i++)
+		for(int i=0; i<primes.size(); i++)
 			primesList.add(primes.get(i));
 		
 		return primesList;
@@ -83,7 +77,7 @@ public class SmartMethod implements IMethod<Integer> {
 	
 	@Override
 	public Integer getLastPrime() {
-		return primes.get(primes.getLastIndex());
+		return primes.get(primes.size());
 	}
 	
 	/**
@@ -91,7 +85,7 @@ public class SmartMethod implements IMethod<Integer> {
 	 */
 	@Override
 	public int count() {
-		return count + 1;
+		return primes.size();
 	}
 
 	@Override
