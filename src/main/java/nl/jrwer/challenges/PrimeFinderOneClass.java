@@ -33,7 +33,7 @@ public class PrimeFinderOneClass {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Searching for " + time / 1000 + " seconds ... \n");
+		System.out.println("Searching primes for " + time / 1000 + " seconds ... \n");
 		
 		long startTime = System.currentTimeMillis();
 		
@@ -44,6 +44,7 @@ public class PrimeFinderOneClass {
 			if(isPrime(i))
 				primes.add(i);
 
+		System.out.println(String.format("Time searching: %d ms", System.currentTimeMillis() - startTime));
 		System.out.println("Finished :)");
 		System.out.println(String.format("Found %s primes", df.format(primes.getLastIndex())));
 		System.out.println(String.format("Last prime found: %s", df.format(primes.last())));
